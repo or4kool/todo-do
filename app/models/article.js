@@ -1,18 +1,19 @@
 // Example model
 
 var mongoose = require('mongoose'),
-  Schema = mongoose.Schema;
+    Schema = mongoose.Schema;
 
-var ArticleSchema = new Schema({
-  title: String,
-  url: String,
-  text: String
+var todoSchema = new Schema({
+    title: String,
+    text: String,
+    author: String,
+    peroid: { type: Date, default: Date.now },
+    finished: { type: Boolean, default: false }
 });
 
-ArticleSchema.virtual('date')
-  .get(function(){
-    return this._id.getTimestamp();
-  });
+todoSchema.virtual('date')
+    .get(function() {
+        return this._id.getTimestamp();
+    });
 
-mongoose.model('Article', ArticleSchema);
-
+mongoose.model('todoModel', todoSchema);
